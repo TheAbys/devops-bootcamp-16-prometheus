@@ -1,14 +1,14 @@
 Name:                   monitoring-kube-prometheus-operator
 Namespace:              monitoring
-CreationTimestamp:      Thu, 04 Jul 2024 15:01:29 +0100
+CreationTimestamp:      Wed, 28 Aug 2024 09:33:49 +0200
 Labels:                 app=kube-prometheus-stack-operator
                         app.kubernetes.io/component=prometheus-operator
                         app.kubernetes.io/instance=monitoring
                         app.kubernetes.io/managed-by=Helm
                         app.kubernetes.io/name=kube-prometheus-stack-prometheus-operator
                         app.kubernetes.io/part-of=kube-prometheus-stack
-                        app.kubernetes.io/version=61.2.0
-                        chart=kube-prometheus-stack-61.2.0
+                        app.kubernetes.io/version=62.3.0
+                        chart=kube-prometheus-stack-62.3.0
                         heritage=Helm
                         release=monitoring
 Annotations:            deployment.kubernetes.io/revision: 1
@@ -26,31 +26,33 @@ Pod Template:
                     app.kubernetes.io/managed-by=Helm
                     app.kubernetes.io/name=kube-prometheus-stack-prometheus-operator
                     app.kubernetes.io/part-of=kube-prometheus-stack
-                    app.kubernetes.io/version=61.2.0
-                    chart=kube-prometheus-stack-61.2.0
+                    app.kubernetes.io/version=62.3.0
+                    chart=kube-prometheus-stack-62.3.0
                     heritage=Helm
                     release=monitoring
   Service Account:  monitoring-kube-prometheus-operator
   Containers:
    kube-prometheus-stack:
-    Image:      quay.io/prometheus-operator/prometheus-operator:v0.75.0
+    Image:      quay.io/prometheus-operator/prometheus-operator:v0.76.0
     Port:       10250/TCP
     Host Port:  0/TCP
     Args:
       --kubelet-service=kube-system/monitoring-kube-prometheus-kubelet
       --localhost=127.0.0.1
-      --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.75.0
+      --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.76.0
       --config-reloader-cpu-request=0
       --config-reloader-cpu-limit=0
       --config-reloader-memory-request=0
       --config-reloader-memory-limit=0
-      --thanos-default-base-image=quay.io/thanos/thanos:v0.35.1
+      --thanos-default-base-image=quay.io/thanos/thanos:v0.36.1
       --secret-field-selector=type!=kubernetes.io/dockercfg,type!=kubernetes.io/service-account-token,type!=helm.sh/release.v1
       --web.enable-tls=true
       --web.cert-file=/cert/cert
       --web.key-file=/cert/key
       --web.listen-address=:10250
       --web.tls-min-version=VersionTLS13
+    Liveness:   http-get https://:https/healthz delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get https://:https/healthz delay=0s timeout=1s period=10s #success=1 #failure=3
     Environment:
       GOGC:  30
     Mounts:
@@ -66,8 +68,8 @@ Conditions:
   Available      True    MinimumReplicasAvailable
   Progressing    True    NewReplicaSetAvailable
 OldReplicaSets:  <none>
-NewReplicaSet:   monitoring-kube-prometheus-operator-f64b844b9 (1/1 replicas created)
+NewReplicaSet:   monitoring-kube-prometheus-operator-987884b84 (1/1 replicas created)
 Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  18m   deployment-controller  Scaled up replica set monitoring-kube-prometheus-operator-f64b844b9 to 1
+  Normal  ScalingReplicaSet  28m   deployment-controller  Scaled up replica set monitoring-kube-prometheus-operator-987884b84 to 1

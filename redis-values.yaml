@@ -1,6 +1,11 @@
-serviceMonitor:
+serviceMonitor: # link between the exporter and prometheus, prometheus takes the servicemonitor
   enabled: true
   labels:
-    release: monitoring
-
+    release: monitoring # Prometheus is looking for this label to setup the targets
+env: {}
+#  - name: REDIS_PASSWORD
+#    valueFrom:
+#      secretKeyRef:
+#        key: redis-password
+#        name: redis-config-0.0.2
 redisAddress: redis://redis-cart:6379

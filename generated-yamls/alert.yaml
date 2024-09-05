@@ -1,19 +1,19 @@
 Name:               alertmanager-monitoring-kube-prometheus-alertmanager
 Namespace:          monitoring
-CreationTimestamp:  Thu, 04 Jul 2024 15:01:33 +0100
+CreationTimestamp:  Wed, 28 Aug 2024 09:33:53 +0200
 Selector:           alertmanager=monitoring-kube-prometheus-alertmanager,app.kubernetes.io/instance=monitoring-kube-prometheus-alertmanager,app.kubernetes.io/managed-by=prometheus-operator,app.kubernetes.io/name=alertmanager
 Labels:             app=kube-prometheus-stack-alertmanager
                     app.kubernetes.io/instance=monitoring
                     app.kubernetes.io/managed-by=Helm
                     app.kubernetes.io/part-of=kube-prometheus-stack
-                    app.kubernetes.io/version=61.2.0
-                    chart=kube-prometheus-stack-61.2.0
+                    app.kubernetes.io/version=62.3.0
+                    chart=kube-prometheus-stack-62.3.0
                     heritage=Helm
                     managed-by=prometheus-operator
                     release=monitoring
 Annotations:        meta.helm.sh/release-name: monitoring
                     meta.helm.sh/release-namespace: monitoring
-                    prometheus-operator-input-hash: 8238520804202908411
+                    prometheus-operator-input-hash: 17354725930987003353
 Replicas:           1 desired | 1 total
 Update Strategy:    RollingUpdate
 Pods Status:        1 Running / 0 Waiting / 0 Succeeded / 0 Failed
@@ -27,7 +27,7 @@ Pod Template:
   Service Account:  monitoring-kube-prometheus-alertmanager
   Init Containers:
    init-config-reloader:
-    Image:      quay.io/prometheus-operator/prometheus-config-reloader:v0.75.0
+    Image:      quay.io/prometheus-operator/prometheus-config-reloader:v0.76.0
     Port:       8081/TCP
     Host Port:  0/TCP
     Command:
@@ -74,7 +74,7 @@ Pod Template:
       /etc/alertmanager/config_out from config-out (ro)
       /etc/alertmanager/web_config/web-config.yaml from web-config (ro,path="web-config.yaml")
    config-reloader:
-    Image:      quay.io/prometheus-operator/prometheus-config-reloader:v0.75.0
+    Image:      quay.io/prometheus-operator/prometheus-config-reloader:v0.76.0
     Port:       8080/TCP
     Host Port:  0/TCP
     Command:
@@ -116,4 +116,4 @@ Volume Claims:  <none>
 Events:
   Type    Reason            Age   From                    Message
   ----    ------            ----  ----                    -------
-  Normal  SuccessfulCreate  17m   statefulset-controller  create Pod alertmanager-monitoring-kube-prometheus-alertmanager-0 in StatefulSet alertmanager-monitoring-kube-prometheus-alertmanager successful
+  Normal  SuccessfulCreate  27m   statefulset-controller  create Pod alertmanager-monitoring-kube-prometheus-alertmanager-0 in StatefulSet alertmanager-monitoring-kube-prometheus-alertmanager successful
